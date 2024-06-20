@@ -1,10 +1,10 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Form from "./Form";
 import Swal from "sweetalert2";
 import { useSelector, useDispatch } from "react-redux";
-import { handleInput } from "../redux-toolkit/slices/Post-slice";
+import { handleInput, resetPost } from "../redux-toolkit/slices/Post-slice";
 
 export default function AddProducts() {
   const data = useSelector((state) => state.post);
@@ -42,6 +42,7 @@ export default function AddProducts() {
           })
         );
       });
+    dispatch(resetPost());
   }, []);
 
   const formSubmit = (e) => {
