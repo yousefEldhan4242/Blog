@@ -1,8 +1,8 @@
-import Product from "../../components/Post";
+import Post from "../../components/Post";
 
 export const metadata = {
   title: "View Post",
 };
 export default function Home({ params }) {
-  return <Product postId={params.postId} />;
+  return <Post postId={params.postId} />;
 }

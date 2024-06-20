@@ -1,4 +1,4 @@
-export default async function product(props) {
+export default async function Post(props) {
   let res = await fetch(
     `https://jsonplaceholder.typicode.com/posts/${props.postId}`
   );

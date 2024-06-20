@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import ChosenPost from "./ChosenPost";
+import Form from "./Form";
 import Swal from "sweetalert2";
 
 export default function AddProducts() {
@@ -75,11 +75,7 @@ export default function AddProducts() {
 
   return (
     <>
-      <ChosenPost
-        data={data}
-        formSubmit={formSubmit}
-        handleInput={handleInput}
-      />
+      <Form data={data} formSubmit={formSubmit} handleInput={handleInput} />
     </>
   );
 }

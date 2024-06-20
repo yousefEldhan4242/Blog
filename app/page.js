@@ -1,11 +1,13 @@
 import Link from "next/link";
 import Posts from "./components/Posts";
 import { Suspense } from "react";
-import loading from "./loading";
+import loadingScreen from "./loading";
 
 export const metadata = {
   title: "Home Page",
 };
+
+const load = <loadingScreen />;
 export default async function Home() {
   return (
     <div className="container mx-auto px-4 py-8">
@@ -15,7 +17,7 @@ export default async function Home() {
       >
         Create Post
       </Link>
-      <Suspense fallback={<loading />}>
+      <Suspense fallback={load}>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <Posts />
         </div>

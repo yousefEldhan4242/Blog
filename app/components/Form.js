@@ -1,4 +1,4 @@
-export default function ChosenPost({ data, formSubmit, handleInput }) {
+export default function Form({ data, formSubmit, handleInput }) {
   return (
     <div className="max-w-md mx-auto bg-white p-6 rounded-md shadow-md mt-10">
       <h1 className="text-xl font-bold mb-5 text-gray-700">Add Post</h1>
@@ -26,7 +26,7 @@ export default function ChosenPost({ data, formSubmit, handleInput }) {
         <div className="mb-4">
           <label
             data-name="Body"
-            htmlFor="PostPrice"
+            htmlFor="Postbody"
             className="form-label block text-gray-700 text-sm font-bold mb-2"
           >
             body
@@ -34,11 +34,11 @@ export default function ChosenPost({ data, formSubmit, handleInput }) {
           <input
             type="text"
             className="w-full px-3 py-2 border rounded-md text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="PostPrice"
-            placeholder="Post Price"
-            aria-describedby="Product Price"
+            id="Postbody"
+            placeholder="Post body"
+            aria-describedby="Product body"
             name="body"
-            value={data.price}
+            value={data.body}
             onChange={handleInput}
           />
         </div>

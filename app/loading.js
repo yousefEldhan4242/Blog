@@ -1,4 +1,4 @@
-export default function loading() {
+export default function loadingScreen() {
   return (
     <div className="bg-gray-100 h-[100vh] flex flex-col items-center justify-center">
       <h2 className="text-black block mb-5 text-[40px] font-black">
