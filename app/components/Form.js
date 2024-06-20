@@ -1,4 +1,12 @@
-export default function Form({ data, formSubmit, handleInput }) {
+"use client";
+
+import { handleInput } from "../redux-toolkit/slices/Post-slice";
+import { useSelector, useDispatch } from "react-redux";
+
+export default function Form({ formSubmit }) {
+  const dispatch = useDispatch();
+
+  const post = useSelector((state) => state.post);
   return (
     <div className="max-w-md mx-auto bg-white p-6 rounded-md shadow-md mt-10">
       <h1 className="text-xl font-bold mb-5 text-gray-700">Add Post</h1>
@@ -18,8 +26,15 @@ export default function Form({ data, formSubmit, handleInput }) {
             placeholder="Post Title"
             aria-describedby="Post Title"
             name="title"
-            value={data.title}
-            onChange={handleInput}
+            value={post.title}
+            onChange={(e) => {
+              dispatch(
+                handleInput({
+                  name: e.target.name,
+                  value: e.target.value,
+                })
+              );
+            }}
           />
         </div>
 
@@ -38,8 +53,15 @@ export default function Form({ data, formSubmit, handleInput }) {
             placeholder="Post body"
             aria-describedby="Product body"
             name="body"
-            value={data.body}
-            onChange={handleInput}
+            value={post.body}
+            onChange={(e) => {
+              dispatch(
+                handleInput({
+                  name: e.target.name,
+                  value: e.target.value,
+                })
+              );
+            }}
           />
         </div>
 

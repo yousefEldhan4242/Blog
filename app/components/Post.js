@@ -5,7 +5,7 @@ export default async function Post(props) {
   let post = await res.json();
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex items-center justify-center h-screen bg-gray-100">
       <div className="max-w-lg bg-white rounded-lg overflow-hidden shadow-lg p-6 w-full">
         <div className="font-bold text-xl mb-2 text-gray-900">{post.title}</div>
         <p className="text-gray-700 text-base mb-4">{post.body}</p>
