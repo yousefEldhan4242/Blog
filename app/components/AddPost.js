@@ -1,21 +1,19 @@
 "use client";
 import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import Form from "./Form";
-import Swal from "sweetalert2";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { handleInput, resetPost } from "../redux-toolkit/slices/Post-slice";
+import Form from "./Form";
 
 export default function AddProducts() {
-  const data = useSelector((state) => state.post);
   const dispatch = useDispatch();
 
   let lastId = 0;
   let lastUserID = 0;
 
-  const router = useRouter();
-
   useEffect(() => {
+    // Reset The State
+    dispatch(resetPost());
+
     fetch("https://jsonplaceholder.typicode.com/posts")
       .then((res) => res.json())
       .then((data) => {
@@ -42,40 +40,11 @@ export default function AddProducts() {
           })
         );
       });
-    dispatch(resetPost());
   }, []);
-
-  const formSubmit = (e) => {
-    e.preventDefault();
-
-    if (data.title.length > 0 && data.body.length > 0) {
-      fetch("https://jsonplaceholder.typicode.com/posts", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      Swal.fire({
-        title: "Good job!",
-        text: "You Created A Post",
-        icon: "success",
-      });
-      router.push("/");
-    } else {
-      document.querySelectorAll(".form-label").forEach((label) => {
-        if (document.getElementById(label.htmlFor).value.length == "0") {
-          label.textContent = `Please, Write A Valid ${label.dataset.name}`;
-          label.style.color = "red";
-        }
-      });
-    }
-  };
 
   return (
     <>
-      <Form data={data} formSubmit={formSubmit} />
+      <Form />
     </>
   );
 }

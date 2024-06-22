@@ -2,11 +2,41 @@
 
 import { handleInput } from "../redux-toolkit/slices/Post-slice";
 import { useSelector, useDispatch } from "react-redux";
+import Swal from "sweetalert2";
+import { useRouter } from "next/navigation";
 
-export default function Form({ formSubmit }) {
+export default function Form() {
   const dispatch = useDispatch();
-
+  const router = useRouter();
   const post = useSelector((state) => state.post);
+
+  const formSubmit = (e) => {
+    e.preventDefault();
+
+    if (post.title.length > 0 && post.body.length > 0) {
+      fetch("https://jsonplaceholder.typicode.com/posts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(post),
+      });
+
+      Swal.fire({
+        title: "Good job!",
+        text: "You Created A Post",
+        icon: "success",
+      });
+      router.push("/");
+    } else {
+      document.querySelectorAll(".form-label").forEach((label) => {
+        if (document.getElementById(label.htmlFor).value.length == "0") {
+          label.textContent = `Please, Write A Valid ${label.dataset.name}`;
+          label.style.color = "red";
+        }
+      });
+    }
+  };
   return (
     <div className="max-w-md mx-auto bg-white p-6 rounded-md shadow-md mt-10">
       <h1 className="text-xl font-bold mb-5 text-gray-700">Add Post</h1>
